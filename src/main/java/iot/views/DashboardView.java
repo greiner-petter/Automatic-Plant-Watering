@@ -1,4 +1,4 @@
-package iot.views.helloworld;
+package iot.views;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;

@@ -11,7 +11,6 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import iot.views.helloworld.DashboardView;
 import org.vaadin.lineawesome.LineAwesomeIcon;
 
 /**
