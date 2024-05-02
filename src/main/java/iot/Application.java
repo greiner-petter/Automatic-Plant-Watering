@@ -1,6 +1,7 @@
 package iot;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.theme.Theme;
 import iot.mqtt.MQTT;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,7 @@ import org.springframework.context.event.EventListener;
  */
 @SpringBootApplication
 @Theme(value = "iot-dashboard")
+@Push
 public class Application implements AppShellConfigurator {
 
     @EventListener(ApplicationReadyEvent.class)
