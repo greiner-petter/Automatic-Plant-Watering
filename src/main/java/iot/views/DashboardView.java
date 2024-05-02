@@ -11,7 +11,7 @@ import com.vaadin.flow.router.RouteAlias;
 import iot.views.MainLayout;
 
 @PageTitle("Dashboard")
-@Route(value = "", layout = MainLayout.class)
+@Route(value = "/", layout = MainLayout.class)
 public class DashboardView extends HorizontalLayout {
 
     private TextField name;
