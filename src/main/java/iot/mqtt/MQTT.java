@@ -7,12 +7,10 @@ public class MQTT {
 
     public static void init() {
 
-        String topic        = "gruppe-n/mqtt/test";
-        String content      = "Message from Java";
-        String lastWill     = "This is my last Will.";
+        String topic        = "#";
         int qos             = 2;
-        String broker       = "tcp://localhost:1883";
-        String clientId     = "JavaSample";
+        String broker       = "tcp://141.41.35.170:1883";
+        String clientId     = "Java";
         MemoryPersistence persistence = new MemoryPersistence();
 
         try {
@@ -23,18 +21,16 @@ public class MQTT {
             sampleClient.connect(connOpts);
             sampleClient.subscribe(topic, qos, new IMqttMessageListener() {
                 @Override
-                public void messageArrived(String topic, MqttMessage mqttMessage)
-                        throws Exception {
+                public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
                     System.out.println(mqttMessage.toString());
                 }
             });
             System.out.println("Subscribed");
 
             // LOOP FOREVER
-            while (sampleClient.isConnected());
+            //while (sampleClient.isConnected());
 
-            System.out.println("Shutdown");
-            System.exit(0);
+            //System.out.println("Shutdown");
         } catch(MqttException me) {
             me.printStackTrace();
         }

@@ -2,6 +2,7 @@ package iot;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
+import iot.mqtt.MQTT;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -20,7 +21,7 @@ public class Application implements AppShellConfigurator {
 
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
-        System.out.println("hello world, I have just started up");
+        MQTT.init();
     }
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
