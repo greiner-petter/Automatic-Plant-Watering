@@ -10,15 +10,14 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import iot.views.MainLayout;
 
-@PageTitle("Hello World")
+@PageTitle("Dashboard")
 @Route(value = "", layout = MainLayout.class)
-@RouteAlias(value = "", layout = MainLayout.class)
-public class HelloWorldView extends HorizontalLayout {
+public class DashboardView extends HorizontalLayout {
 
     private TextField name;
     private Button sayHello;
 
-    public HelloWorldView() {
+    public DashboardView() {
         name = new TextField("Your name");
         sayHello = new Button("Say hello");
         sayHello.addClickListener(e -> {

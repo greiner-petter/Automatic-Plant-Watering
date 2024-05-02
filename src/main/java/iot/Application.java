@@ -4,6 +4,8 @@ import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.theme.Theme;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 
 /**
  * The entry point of the Spring Boot application.
@@ -16,6 +18,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @Theme(value = "iot-dashboard")
 public class Application implements AppShellConfigurator {
 
+    @EventListener(ApplicationReadyEvent.class)
+    public void doSomethingAfterStartup() {
+        System.out.println("hello world, I have just started up");
+    }
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }

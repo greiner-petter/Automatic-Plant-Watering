@@ -11,7 +11,7 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
-import iot.views.helloworld.HelloWorldView;
+import iot.views.helloworld.DashboardView;
 import org.vaadin.lineawesome.LineAwesomeIcon;
 
 /**
@@ -50,7 +50,7 @@ public class MainLayout extends AppLayout {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
-        nav.addItem(new SideNavItem("Hello World", HelloWorldView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("Hello World", DashboardView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
 
         return nav;
     }
