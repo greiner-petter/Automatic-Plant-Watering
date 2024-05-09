@@ -6,6 +6,8 @@ import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import iot.influx.Influx;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.List;
@@ -30,8 +32,8 @@ public class DashboardView extends HorizontalLayout {
         RectangularCoordinate rc = new RectangularCoordinate(xAxis, yAxis);
 
         /*for ()*/ {
-            Data yValues = new Data();
             TimeData xValues = new TimeData();
+            Data yValues = new Data();
 
             List<FluxRecord> results = Influx.getTemps();
             if (results != null) {
@@ -39,6 +41,8 @@ public class DashboardView extends HorizontalLayout {
                     xValues.add(LocalDateTime.ofInstant(result.getTime(), ZoneId.systemDefault()));
                     yValues.add((Number)result.getValueByKey("_value"));
                 }
+            } else {
+                System.out.println("No Chart data.");
             }
 
             LineChart lineData = new LineChart(xValues, yValues);

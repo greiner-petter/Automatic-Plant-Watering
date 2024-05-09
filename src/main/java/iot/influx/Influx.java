@@ -26,12 +26,13 @@ public class Influx {
                 "  |> range(start: -1h)\n" +
                 "  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n" +
                 "  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n" +
-                "  |> filter(fn: (r) => r[\"host\"] == \"170a5e755157\")\n" +
+                "  |> filter(fn: (r) => r[\"host\"] == \"289b3f2187aa\")\n" +
                 "  |> filter(fn: (r) => r[\"topic\"] == \"devices/project/temp\")\n" +
                 "  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\n" +
                 "  |> yield(name: \"mean\")";
 
         QueryApi queryApi = influxDBClient.getQueryApi();
+
 
         List<FluxTable> tables = queryApi.query(flux);
         for (FluxTable fluxTable : tables) {
