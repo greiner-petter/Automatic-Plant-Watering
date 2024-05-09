@@ -1,34 +1,54 @@
 package iot.views;
 
-import com.vaadin.flow.component.Key;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.notification.Notification;
+import com.influxdb.query.FluxRecord;
+import com.storedobject.chart.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.RouteAlias;
-import iot.views.MainLayout;
+import iot.influx.Influx;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.List;
 
 @PageTitle("Dashboard")
 @Route(value = "/", layout = MainLayout.class)
 public class DashboardView extends HorizontalLayout {
 
-    private TextField name;
-    private Button sayHello;
-
     public DashboardView() {
-        name = new TextField("Your name");
-        sayHello = new Button("Say hello");
-        sayHello.addClickListener(e -> {
-            Notification.show("Hello " + name.getValue());
-        });
-        sayHello.addClickShortcut(Key.ENTER);
+        SOChart soChart = new SOChart();
+        soChart.setSize("100%", "500px");
+        String title = "Temperature";
+        soChart.add(new Title(title));
 
-        setMargin(true);
-        setVerticalComponentAlignment(Alignment.END, name, sayHello);
+        XAxis xAxis = new XAxis(DataType.DATE);
+        xAxis.setDivisions(10);
+        xAxis.setName("Time");
 
-        add(name, sayHello);
+        YAxis yAxis = new YAxis(DataType.NUMBER);
+        yAxis.setName("°C");
+
+        RectangularCoordinate rc = new RectangularCoordinate(xAxis, yAxis);
+
+        /*for ()*/ {
+            Data yValues = new Data();
+            TimeData xValues = new TimeData();
+
+            List<FluxRecord> results = Influx.getTemps();
+            if (results != null) {
+                for (FluxRecord result : results) {
+                    xValues.add(LocalDateTime.ofInstant(result.getTime(), ZoneId.systemDefault()));
+                    yValues.add((Number)result.getValueByKey("_value"));
+                }
+            }
+
+            LineChart lineData = new LineChart(xValues, yValues);
+            lineData.setName("Temperature");
+
+            lineData.plotOn(rc);
+            soChart.add(lineData);
+        }
+
+        add(soChart);
     }
 
 }

@@ -3,6 +3,7 @@ package iot;
 import com.vaadin.flow.component.page.AppShellConfigurator;
 import com.vaadin.flow.component.page.Push;
 import com.vaadin.flow.theme.Theme;
+import iot.influx.Influx;
 import iot.mqtt.MQTT;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,6 +25,7 @@ public class Application implements AppShellConfigurator {
     @EventListener(ApplicationReadyEvent.class)
     public void doSomethingAfterStartup() {
         MQTT.init();
+        Influx.init();
     }
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
