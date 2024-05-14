@@ -23,7 +23,7 @@ public class SimulationView extends VerticalLayout {
         numberFieldTemperature.addValueChangeListener(event -> SimulationConfig.temperature = event.getValue());
         
         simulate = new Button("Simulate");
-        simulate.setIcon(VaadinIcon.PLAY.create());
+        simulate.setIcon(SimulationConfig.simulate ? VaadinIcon.STOP.create() : VaadinIcon.PLAY.create());
         simulate.addClickListener(event -> {
             SimulationConfig.simulate = !SimulationConfig.simulate;
             simulate.setIcon(SimulationConfig.simulate ? VaadinIcon.STOP.create() : VaadinIcon.PLAY.create());
