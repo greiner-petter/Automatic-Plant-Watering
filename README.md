@@ -51,3 +51,18 @@ Once the JAR file is built, you can run it using
 - Find add-ons at [vaadin.com/directory](https://vaadin.com/directory).
 - Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
 - Report issues, create pull requests in [GitHub](https://github.com/vaadin).
+
+## Deploying using Docker
+
+To build the Dockerized version of the project, run
+
+```
+mvn clean package -Pproduction
+docker build . -t iot-dashboard:latest
+```
+
+Once the Docker image is correctly built, you can test it locally using
+
+```
+docker run -p 8080:8080 iot-dashboard:latest
+```
