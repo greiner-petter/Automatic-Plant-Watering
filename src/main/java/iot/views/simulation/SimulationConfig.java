@@ -1,5 +1,6 @@
 package iot.views.simulation;
 
+import iot.mqtt.MQTT;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,6 +16,7 @@ public class SimulationConfig {
     public void scheduleSimulateTick() {
         if (simulate) {
             System.out.println("Currently Simulating Device");
+            MQTT.publish("devices/project/temp", String.valueOf(temperature.intValue()));
         }
     }
 
