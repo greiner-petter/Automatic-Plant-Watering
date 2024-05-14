@@ -3,6 +3,14 @@
 This project can be used as a starting point to create your own Vaadin application with Spring Boot.
 It contains all the necessary configuration and some placeholder files to get you started.
 
+## SSH Tunnel
+```
+ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
+```
+Password: **ubuntu**
+
+Now access InfluxDB @ http://localhost:8086
+
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,
