@@ -14,7 +14,7 @@ public class Influx {
 
     public static void init() {
         String url = "http://localhost:8086";
-        String token = "ckitZbCD8MwLYcIvacKCW-h5eZjVBBJujImg93EoO2ulUZwHKI6I9-E-g2GVd3zXeiIKx2Qg8QK7d3lIPRvOqA==";
+        String token = "az8ODBK8F7IMDLTzLCREeHlKKGQttvmaurLNkdXgA9-XIWUkllm7sV_aXJ-Q7SXyo2oda6wU-sPhMZnVh5kyYA==";
         String org = "my-org";
         String bucket = "telegraf";
         influxDBClient = InfluxDBClientFactory.create(url, token.toCharArray(), org, bucket);
