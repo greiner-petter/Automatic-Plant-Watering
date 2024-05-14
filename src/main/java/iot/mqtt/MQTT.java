@@ -40,4 +40,13 @@ public class MQTT {
             me.printStackTrace();
         }
     }
+
+    public static void publish(String topic, String message) {
+        try {
+            mqttClient.publish(topic, message.getBytes(), 2, false);
+        } catch(MqttException me) {
+            me.printStackTrace();
+        }
+    }
+
 }
