@@ -7,24 +7,21 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
-import iot.mqtt.MQTT;
 import iot.views.MainLayout;
 
 @PageTitle("Simulation")
 @Route(value = "/simulation", layout = MainLayout.class)
 public class SimulationView extends VerticalLayout {
 
-    private NumberField numberFieldTemperature;
-    private Button simulate;
+    private final Button simulate;
 
     public SimulationView() {
-        numberFieldTemperature = new NumberField("Simulated Temperature");
+        NumberField numberFieldTemperature = new NumberField("Simulated Temperature");
         numberFieldTemperature.setValue(SimulationConfig.temperature);
         numberFieldTemperature.setMin(-8.0);
         numberFieldTemperature.setMax(120.0);
-        numberFieldTemperature.addValueChangeListener(event -> {
-            SimulationConfig.temperature = event.getValue();
-        });
+        numberFieldTemperature.addValueChangeListener(event -> SimulationConfig.temperature = event.getValue());
+        
         simulate = new Button("Simulate");
         simulate.setIcon(VaadinIcon.PLAY.create());
         simulate.addClickListener(event -> {
