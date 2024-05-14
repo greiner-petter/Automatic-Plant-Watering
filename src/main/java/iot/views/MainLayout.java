@@ -11,6 +11,7 @@ import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import iot.views.simulation.SimulationView;
 import org.vaadin.lineawesome.LineAwesomeIcon;
 
 /**
@@ -51,6 +52,7 @@ public class MainLayout extends AppLayout {
 
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
         nav.addItem(new SideNavItem("Pump", PumpView.class, LineAwesomeIcon.WATER_SOLID.create()));
+        nav.addItem(new SideNavItem("Simulation", SimulationView.class, LineAwesomeIcon.COG_SOLID.create()));
 
         return nav;
     }
