@@ -1,8 +1,5 @@
 # IoT Dashboard
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
-
 ## SSH Tunnel
 ```
 ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
@@ -13,14 +10,14 @@ Now access InfluxDB @ http://localhost:8086
 
 ## Prerequisites on Ubuntu
 ```
-sudo apt install openjdk-21-jdk
+sudo apt install openjdk-17-jdk
 sudo apt-get install nodejs npm
 https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
 nvm install 18
 nvm use 18
 ```
 
-## Running the application
+## Running the application (Vaadin only)
 
 The project is a standard Maven project. To run it from the command line,
 type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
@@ -29,7 +26,7 @@ http://localhost:8080 in your browser.
 You can also import the project to your IDE of choice as you would with any
 Maven project. Read more on [how to import Vaadin projects to different IDEs](https://vaadin.com/docs/latest/guide/step-by-step/importing) (Eclipse, IntelliJ IDEA, NetBeans, and VS Code).
 
-## Deploying to Production
+## Deploying to Production (Vaadin only)
 
 To create a production build, call `mvnw clean package -Pproduction` (Windows),
 or `./mvnw clean package -Pproduction` (Mac & Linux).
@@ -61,17 +58,26 @@ Once the JAR file is built, you can run it using
 - Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
 - Report issues, create pull requests in [GitHub](https://github.com/vaadin).
 
-## Deploying using Docker
+## Deploying on Proxmox
 
-To build the Dockerized version of the project, run
+- First, ensure the prerequisites are installed.
 
+- Start Docker containers for the first time
+```
+sudo docker compose up
+```
+
+- After the containers are running cancel using CTRL+C
+- Set the influx token in telegraf.conf taken from ./influxdb/influxdb-config/influx-configs
+
+- Start the docker containers again:
+```
+sudo docker compose up
+```
+
+
+- Deploy Dashboard:
 ```
 mvn clean package -Pproduction
-docker build . -t iot-dashboard:latest
-```
-
-Once the Docker image is correctly built, you can test it locally using
-
-```
-docker run -p 8080:8080 iot-dashboard:latest
+java -jar target/iot-dashboard-1.0-SNAPSHOT.jar
 ```
