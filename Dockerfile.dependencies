@@ -1,0 +1,26 @@
+# Base image for dependencies
+FROM eclipse-temurin:21-jdk AS dependencies
+
+# Set environment variables
+ENV NVM_DIR /root/.nvm
+ENV NODE_VERSION 18
+
+# Install required packages and clean up
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    sudo \
+    ca-certificates \
+    maven \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install nvm (Node Version Manager) and Node.js
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
+    . "$NVM_DIR/nvm.sh" && nvm install $NODE_VERSION && nvm use $NODE_VERSION && \
+    npm install -g npm@latest
+
+# Set working directory
+WORKDIR /app
+
+# Copy the pom.xml and download dependencies
+COPY pom.xml /app/
+RUN mvn dependency:resolve

@@ -1,34 +1,23 @@
-# Verwende ein Ubuntu-basiertes OpenJDK 21 JDK Image
-FROM eclipse-temurin:21-jdk
+# Use the dependencies image as the base
+FROM dependencies AS build
 
-# Setze Umgebungsvariablen
-ENV NVM_DIR /root/.nvm
-ENV NODE_VERSION 18
-
-# Installiere notwendige Pakete und entferne die Paketliste
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    curl \
-    sudo \
-    ca-certificates \
-    maven \
-    && rm -rf /var/lib/apt/lists/*
-
-# Installiere nvm (Node Version Manager) und Node.js
-RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash && \
-    . "$NVM_DIR/nvm.sh" && nvm install $NODE_VERSION && nvm use $NODE_VERSION && \
-    npm install -g npm@latest
-
-# Setze das Arbeitsverzeichnis im Container
+# Set working directory
 WORKDIR /app
 
-# Kopiere die aktuelle Verzeichnisinhalte in das Container-Verzeichnis /app
+# Copy the application code
 COPY . /app
 
-# Führt den Maven-Befehl aus, um das Projekt zu bauen
+# Build the project
 RUN mvn clean package -Pproduction
 
-# Expose Port 8080
+# Create the final runtime image
+FROM eclipse-temurin:21-jdk
+
+# Copy the built jar from the build stage
+COPY --from=build /app/target/iot-dashboard-1.0-SNAPSHOT.jar /app/iot-dashboard-1.0-SNAPSHOT.jar
+
+# Expose port 8080
 EXPOSE 8080
 
-# Startet die Anwendung
-CMD ["java", "-jar", "target/iot-dashboard-1.0-SNAPSHOT.jar"]
+# Start the application
+ENTRYPOINT ["java", "-jar", "/app/iot-dashboard-1.0-SNAPSHOT.jar"]
