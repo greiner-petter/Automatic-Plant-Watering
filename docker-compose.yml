@@ -16,21 +16,21 @@ services:
     networks: 
       - iot
 
-  grafana:
-    image: grafana/grafana
-    ports:
-      - 8002:3000
-    volumes:
-      - ./grafana/grafana-data:/var/lib/grafana
-      - ./grafana/grafana-log:/var/log/grafana
-    environment:
-      - GF_SERVER_ROOT_URL=http://iotserver:8002
-      - GF_SECURITY_ADMIN_PASSWORD=admin
-    restart: always
-    depends_on:
-      - influxdb
-    networks: 
-      - iot
+  # grafana:
+  #   image: grafana/grafana
+  #   ports:
+  #     - 8002:3000
+  #   volumes:
+  #     - ./grafana/grafana-data:/var/lib/grafana
+  #     - ./grafana/grafana-log:/var/log/grafana
+  #   environment:
+  #     - GF_SERVER_ROOT_URL=http://iotserver:8002
+  #     - GF_SECURITY_ADMIN_PASSWORD=admin
+  #   restart: always
+  #   depends_on:
+  #     - influxdb
+  #   networks: 
+  #     - iot
 
   broker:
     image: eclipse-mosquitto

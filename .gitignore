@@ -23,4 +23,3 @@ webpack.generated.js
 # TIG
 influxdb/influxdb-data
 telegraf/
-grafana/
