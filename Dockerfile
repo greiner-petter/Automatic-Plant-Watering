@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     sudo \
     ca-certificates \
+    maven \
     && rm -rf /var/lib/apt/lists/*
 
 # Installiere nvm (Node Version Manager) und Node.js
@@ -24,7 +25,7 @@ WORKDIR /app
 COPY . /app
 
 # Führt den Maven-Befehl aus, um das Projekt zu bauen
-RUN ./mvnw clean package -Pproduction
+RUN mvn clean package -Pproduction
 
 # Expose Port 8080
 EXPOSE 8080
