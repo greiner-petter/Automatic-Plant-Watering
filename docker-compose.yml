@@ -68,20 +68,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
+    volumes:
+      - .:/app
     environment:
-      - NVM_DIR=/root/.nvm
-      - NODE_VERSION=18
-    volumes:
-      - .:/app
-    depends_on:
-      - dependencies
-
-  dependencies:
-    build:
-      context: .
-      dockerfile: Dockerfile.dependencies
-    volumes:
-      - .:/app
+      - JAVA_OPTS=-Xmx512m
 
 volumes:
   nodered:
