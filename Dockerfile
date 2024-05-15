@@ -31,4 +31,4 @@ RUN mvn clean package -Pproduction
 EXPOSE 8080
 
 # Definiere den primären Ausführbar, der im Container ausgeführt wird
-CMD ["java", "-jar", "target/your-application.jar"]
+CMD ["java", "-jar", "target/iot-dashboard-1.0-SNAPSHOT.jar"]
