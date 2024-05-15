@@ -59,6 +59,10 @@ Once the JAR file is built, you can run it using
 - Report issues, create pull requests in [GitHub](https://github.com/vaadin).
 
 ## Deploying on Proxmox
+- Purge old docker images
+```
+sudo docker stop $(sudo docker ps -aq) && sudo docker rm $(sudo docker ps -aq) && sudo docker rmi $(sudo docker images -q)
+```
 
 - First, ensure the prerequisites are installed.
 
