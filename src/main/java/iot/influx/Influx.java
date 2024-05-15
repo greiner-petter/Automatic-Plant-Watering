@@ -6,6 +6,9 @@ import com.influxdb.client.QueryApi;
 import com.influxdb.query.FluxRecord;
 import com.influxdb.query.FluxTable;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.List;
 
 public class Influx {
@@ -14,11 +17,27 @@ public class Influx {
 
     public static void init() {
         String url = "http://localhost:8086";
-        String token = "XUDcWydFHk6viOK3Ls6Kn7TvVUjoX30OPoGbRhtad7pOqj2HISJ8hZd6A14WKx10k_zIvw_mMhpFndMRwr0fgw==";
+        String token = getInfluxTokenFromProxmox();
+        System.out.println("Influx Token: '" + token + "'");
+
         String org = "my-org";
         String bucket = "telegraf";
         influxDBClient = InfluxDBClientFactory.create(url, token.toCharArray(), org, bucket);
-        System.out.println("Influx Ping: " + influxDBClient.ping());
+        System.out.println("Influx Connection: " + influxDBClient.ping());
+    }
+
+    private static String getInfluxTokenFromProxmox() {
+        try {
+            String content = Files.readString(new File("/home/iot-projekt/git/IoT-Webserver/influxdb/influxdb-config/influx-configs").toPath());
+            String tokenLine = content.split( "\n")[2];
+            return tokenLine.substring(11, 99);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // This is the last used Token.
+        // We use it as a fallback token
+        return "XUDcWydFHk6viOK3Ls6Kn7TvVUjoX30OPoGbRhtad7pOqj2HISJ8hZd6A14WKx10k_zIvw_mMhpFndMRwr0fgw==";
     }
 
     public static List<FluxRecord> getTemps() {
