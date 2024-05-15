@@ -36,7 +36,6 @@ public class Influx {
                 "  |> range(start: -1h)\n" +
                 "  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n" +
                 "  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n" +
-                "  |> filter(fn: (r) => r[\"host\"] == \"23a338b4f32b\")\n" +
                 "  |> filter(fn: (r) => r[\"topic\"] == \""+topic+"\")\n" +
                 "  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\n" +
                 "  |> yield(name: \"mean\")";
