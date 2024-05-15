@@ -25,10 +25,10 @@ WORKDIR /app
 COPY . /app
 
 # Führt den Maven-Befehl aus, um das Projekt zu bauen
-RUN mvn clean package -Pproduction
+#RUN mvn clean package -Pproduction
 
 # Expose Port 8080
 EXPOSE 8080
 
 # Definiere den primären Ausführbar, der im Container ausgeführt wird
-CMD ["java", "-jar", "/app/target/iot-dashboard-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "target/iot-dashboard-1.0-SNAPSHOT.jar"]
