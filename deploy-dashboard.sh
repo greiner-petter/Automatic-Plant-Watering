@@ -12,7 +12,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash 
     . "$NVM_DIR/nvm.sh" && nvm install $NODE_VERSION && nvm use $NODE_VERSION && \
     npm install -g npm@latest
 
-sudo apt install openjdk-21-jdk
+sudo apt install openjdk-17-jdk
 nvm install 18
 nvm use 18
 
