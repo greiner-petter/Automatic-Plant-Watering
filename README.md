@@ -11,6 +11,15 @@ Password: **ubuntu**
 
 Now access InfluxDB @ http://localhost:8086
 
+## Prerequisites on Ubuntu
+```
+sudo apt install openjdk-21-jdk
+sudo apt-get install nodejs npm
+https://raw.githubusercontent.com/nvm-sh/nvm/master/install.sh
+nvm install 18
+nvm use 18
+```
+
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,
@@ -39,7 +48,7 @@ Once the JAR file is built, you can run it using
 - `views` folder in `frontend/` contains the client-side JavaScript views of your application.
 - `themes` folder in `frontend/` contains the custom CSS styles.
 
-## Useful links
+## Useful Vaadin links
 
 - Read the documentation at [vaadin.com/docs](https://vaadin.com/docs).
 - Follow the tutorial at [vaadin.com/docs/latest/tutorial/overview](https://vaadin.com/docs/latest/tutorial/overview).
