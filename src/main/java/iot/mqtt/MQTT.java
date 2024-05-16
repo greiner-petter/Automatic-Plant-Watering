@@ -35,7 +35,7 @@ public class MQTT {
     }
     public static void activatePump(int duration) {
         try {
-            mqttClient.publish("event/pump", String.valueOf(duration).getBytes(), 2, false);
+            mqttClient.publish("event/pump", String.valueOf(duration).getBytes(), 2, true);
         } catch(MqttException me) {
             me.printStackTrace();
         }
