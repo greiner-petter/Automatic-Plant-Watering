@@ -80,6 +80,19 @@ public class DashboardView extends VerticalLayout {
             lineData.plotOn(rc);
             soChart.add(lineData);
         }
+        /* Moisture */
+        {
+            TimeData xValues = new TimeData();
+            Data yValues = new Data();
+
+            List<FluxRecord> results = Influx.getMoisture();
+            LineChart lineData = sampleData(xValues, yValues, results);
+            lineData.setName("Moisture");
+
+            lineData.plotOn(rc);
+            soChart.add(lineData);
+
+        }
 
         return soChart;
     }

@@ -50,6 +50,9 @@ public class Influx {
     public static List<FluxRecord> getPressure() {
         return queryTopic("devices/project/pressure");
     }
+    public static List<FluxRecord> getMoisture() {
+        return queryTopic("devices/project/moisture");
+    }
     private static List<FluxRecord> queryTopic(String topic) {
         String flux = "from(bucket: \"telegraf\")\n" +
                 "  |> range(start: -1h)\n" +
