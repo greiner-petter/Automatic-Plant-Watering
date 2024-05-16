@@ -62,16 +62,16 @@ services:
     networks: 
       - iot
 
-#  app:
-#    build:
-#      context: .
-#      dockerfile: Dockerfile
-#    ports:
-#      - "8080:8080"
-#    volumes:
-#      - .:/app
-#    environment:
-#      - JAVA_OPTS=-Xmx512m
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+     - JAVA_OPTS=-Xmx512m
 
 volumes:
   nodered:

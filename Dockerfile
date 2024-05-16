@@ -1,5 +1,5 @@
-# Verwende ein Ubuntu-basiertes OpenJDK 21 JDK Image
-FROM eclipse-temurin:21-jdk
+# Verwende ein Ubuntu-basiertes OpenJDK 17 JDK Image
+FROM eclipse-temurin:17-jdk
 
 # Setze Umgebungsvariablen
 ENV NVM_DIR /root/.nvm
@@ -31,4 +31,5 @@ COPY . /app
 EXPOSE 8080
 
 # Definiere den primären Ausführbar, der im Container ausgeführt wird
-CMD ["java", "-jar", "target/iot-dashboard-1.0-SNAPSHOT.jar"]
+# CMD ["java", "-jar", "target/iot-dashboard-1.0-SNAPSHOT.jar"]
+CMD ["mvn", "spring-boot:run"]
