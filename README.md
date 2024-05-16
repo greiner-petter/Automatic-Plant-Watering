@@ -65,17 +65,9 @@ sudo docker stop $(sudo docker ps -aq) && sudo docker rm $(sudo docker ps -aq) &
 
 - First, ensure the prerequisites are installed.
 
-- Start Docker containers for the first time
+- Start Docker containers detached
 ```
-sudo docker compose up
-```
-
-- After the containers are running cancel using CTRL+C
-- Set the influx token in telegraf.conf taken from ./influxdb/influxdb-config/influx-configs
-
-- Start the docker containers again:
-```
-sudo docker compose up
+sudo docker compose up -d
 ```
 
 
