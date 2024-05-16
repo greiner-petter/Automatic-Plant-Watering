@@ -49,4 +49,11 @@ public class MQTT {
         }
     }
 
+    public static void cancelPump() {
+        try {
+            mqttClient.publish("event/pump", "".getBytes(), 2, true);
+        } catch(MqttException me) {
+            me.printStackTrace();
+        }
+    }
 }
