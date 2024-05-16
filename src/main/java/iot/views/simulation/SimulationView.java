@@ -2,6 +2,7 @@ package iot.views.simulation;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -16,6 +17,10 @@ public class SimulationView extends VerticalLayout {
     private final Button simulate;
 
     public SimulationView() {
+        Span devSpan = new Span("This View is development only and is used to fill the InfluxDB with sample data.");
+        devSpan.getElement().getThemeList().add("badge error");
+        add(devSpan);
+
         NumberField numberFieldTemperature = new NumberField("Simulated Temperature");
         numberFieldTemperature.setValue(SimulationConfig.temperature);
         numberFieldTemperature.setMin(-8.0);
