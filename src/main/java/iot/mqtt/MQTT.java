@@ -11,7 +11,7 @@ public class MQTT {
 
         final String topic        = "#";
         final int qos             = 2;
-        final String broker       = "tcp://141.41.35.170:1883";
+        final String broker       = "tcp://localhost:1883";
         final String clientId     = "Java";
         MemoryPersistence persistence = new MemoryPersistence();
 
