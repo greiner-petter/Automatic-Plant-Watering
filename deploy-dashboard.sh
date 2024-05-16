@@ -16,6 +16,7 @@ sudo apt install openjdk-17-jdk
 nvm install 18
 nvm use 18
 
-mvn clean package -Pproduction
+sudo docker compose up -d
 
-sudo docker compose up
+mvn clean package -Pproduction
+nohup java -jar target/iot-dashboard-1.0-SNAPSHOT.jar &
