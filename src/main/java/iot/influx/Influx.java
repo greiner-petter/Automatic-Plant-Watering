@@ -37,7 +37,7 @@ public class Influx {
 
         // This is the last used Token.
         // We use it as a fallback token
-        return "XUDcWydFHk6viOK3Ls6Kn7TvVUjoX30OPoGbRhtad7pOqj2HISJ8hZd6A14WKx10k_zIvw_mMhpFndMRwr0fgw==";
+        return "tqLOlGZBBbm9szYejBm4iDIWUaBmJkK7_6btY0A4nX4s57N7DneAehMFjwsmPTlGsQpTnvZPpt7Xf0n2OnsfZA==";
     }
 
     public static List<FluxRecord> getTemps() {
