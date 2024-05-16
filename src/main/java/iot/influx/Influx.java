@@ -26,20 +26,6 @@ public class Influx {
         System.out.println("Influx Connection: " + influxDBClient.ping());
     }
 
-    private static String getInfluxTokenFromProxmox() {
-        try {
-            String content = Files.readString(new File("/home/iot-projekt/git/IoT-Webserver/influxdb/influxdb-config/influx-configs").toPath());
-            String tokenLine = content.split( "\n")[2];
-            return tokenLine.substring(11, 99);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // This is the last used Token.
-        // We use it as a fallback token
-        return "tqLOlGZBBbm9szYejBm4iDIWUaBmJkK7_6btY0A4nX4s57N7DneAehMFjwsmPTlGsQpTnvZPpt7Xf0n2OnsfZA==";
-    }
-
     public static List<FluxRecord> getTemps() {
         return queryTopic("devices/project/temp");
     }
@@ -47,18 +33,21 @@ public class Influx {
     public static List<FluxRecord> getAltitude() {
         return queryTopic("devices/project/altitude");
     }
+
     public static List<FluxRecord> getPressure() {
         return queryTopic("devices/project/pressure");
     }
+
     public static List<FluxRecord> getMoisture() {
         return queryTopic("devices/project/moisture");
     }
+
     private static List<FluxRecord> queryTopic(String topic) {
         String flux = "from(bucket: \"telegraf\")\n" +
                 "  |> range(start: -1h)\n" +
                 "  |> filter(fn: (r) => r[\"_measurement\"] == \"mqtt_consumer\")\n" +
                 "  |> filter(fn: (r) => r[\"_field\"] == \"value\")\n" +
-                "  |> filter(fn: (r) => r[\"topic\"] == \""+topic+"\")\n" +
+                "  |> filter(fn: (r) => r[\"topic\"] == \"" + topic + "\")\n" +
                 "  |> aggregateWindow(every: 1m, fn: mean, createEmpty: false)\n" +
                 "  |> yield(name: \"mean\")";
 
