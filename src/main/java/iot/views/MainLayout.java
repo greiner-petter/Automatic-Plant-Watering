@@ -51,6 +51,7 @@ public class MainLayout extends AppLayout {
         SideNav nav = new SideNav();
 
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, LineAwesomeIcon.GLOBE_SOLID.create()));
+        nav.addItem(new SideNavItem("Strategy", StrategyView.class, LineAwesomeIcon.UPLOAD_SOLID.create()));
         nav.addItem(new SideNavItem("Pump", PumpView.class, LineAwesomeIcon.WATER_SOLID.create()));
         nav.addItem(new SideNavItem("Simulation", SimulationView.class, LineAwesomeIcon.COG_SOLID.create()));
 

@@ -48,6 +48,13 @@ public class MQTT {
             me.printStackTrace();
         }
     }
+    public static void publish(String topic, String message, int qos, boolean retain) {
+        try {
+            mqttClient.publish(topic, message.getBytes(), qos, retain);
+        } catch(MqttException me) {
+            me.printStackTrace();
+        }
+    }
 
     public static void cancelPump() {
         try {
