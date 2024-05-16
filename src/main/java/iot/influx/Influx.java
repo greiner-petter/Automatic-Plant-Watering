@@ -17,7 +17,7 @@ public class Influx {
 
     public static void init() {
         String url = "http://localhost:8086";
-        String token = getInfluxTokenFromProxmox();
+        String token = "super-secret-auth-token";
         System.out.println("Influx Token: '" + token + "'");
 
         String org = "my-org";

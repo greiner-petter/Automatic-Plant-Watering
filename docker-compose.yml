@@ -12,6 +12,7 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=geheim123456
       - DOCKER_INFLUXDB_INIT_ORG=my-org
       - DOCKER_INFLUXDB_INIT_BUCKET=telegraf
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=super-secret-auth-token
     restart: always
     networks: 
       - iot
