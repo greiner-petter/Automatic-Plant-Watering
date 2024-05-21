@@ -17,9 +17,11 @@ public class StrategyView extends VerticalLayout {
 
     public static Double globalDuration = 2000.0;
     public static Double globalThreshold = 2900.0;
+    public static Double globalSleep = 1000.0 * 60 * 5;
 
     private NumberField durationNumberField;
     private NumberField thresholdNumberField;
+    private NumberField sleepNumberField;
     private Button upload;
 
     public StrategyView() {
@@ -45,6 +47,10 @@ public class StrategyView extends VerticalLayout {
         Button thresholdHigh = new Button("High");
         thresholdHigh.addClickListener(event -> thresholdNumberField.setValue(3000.0));
 
+        sleepNumberField = new NumberField("Sleep Duration");
+        sleepNumberField.setValue(globalSleep);
+        sleepNumberField.setMin(1000.0);
+
         upload = new Button("Upload Strategy", VaadinIcon.UPLOAD.create());
         upload.addClickListener(e -> {
             if (!durationNumberField.isInvalid()) {
@@ -57,12 +63,16 @@ public class StrategyView extends VerticalLayout {
                 MQTT.publish("event/strategy/threshold", globalThreshold.toString(), 2, true);
                 Notification.show("Threshold uploaded", 4000, Notification.Position.BOTTOM_CENTER);
             }
+            if (!sleepNumberField.isInvalid()) {
+                globalSleep = sleepNumberField.getValue();
+                MQTT.publish("event/strategy/sleep", globalSleep.toString(), 2, true);
+                Notification.show("Sleep Duration uploaded", 4000, Notification.Position.BOTTOM_CENTER);
+            }
         });
         upload.addClickShortcut(Key.ENTER);
         upload.setTooltipText("Upload your Strategy to be used in the next cycle.");
 
-
-        add(durationNumberField, new HorizontalLayout(durationLow, durationMedium, durationHigh), thresholdNumberField, new HorizontalLayout(thresholdLow, thresholdMedium, thresholdHigh), upload);
+        add(durationNumberField, new HorizontalLayout(durationLow, durationMedium, durationHigh), thresholdNumberField, new HorizontalLayout(thresholdLow, thresholdMedium, thresholdHigh), sleepNumberField, upload);
     }
 
 }

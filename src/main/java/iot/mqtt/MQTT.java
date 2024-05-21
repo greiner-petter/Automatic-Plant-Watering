@@ -32,6 +32,9 @@ public class MQTT {
                     if (topic.equals("event/strategy/threshold")) {
                         StrategyView.globalThreshold = Double.valueOf(mqttMessage.toString());
                     }
+                    if (topic.equals("event/strategy/sleep")) {
+                        StrategyView.globalSleep = Double.valueOf(mqttMessage.toString());
+                    }
                 }
             });
             System.out.println("Subscribed");
