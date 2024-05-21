@@ -26,11 +26,19 @@ public class DashboardView extends VerticalLayout {
         setAlignItems(Alignment.CENTER);
         setJustifyContentMode(JustifyContentMode.CENTER);
 
-        add(createChart());
-
+        {
+            HorizontalLayout layout = new HorizontalLayout(createChart(1), createChart(2));
+            layout.setWidthFull();
+            add(layout);
+        }
+        {
+            HorizontalLayout layout = new HorizontalLayout(createChart(3), createChart(4));
+            layout.setWidthFull();
+            add(layout);
+        }
     }
 
-    public SOChart createChart() {
+    public SOChart createChart(int type) {
         SOChart soChart = new SOChart();
         soChart.setSize("100%", "550px");
 
@@ -43,55 +51,60 @@ public class DashboardView extends VerticalLayout {
 
         RectangularCoordinate rc = new RectangularCoordinate(xAxis, yAxis);
 
-        /* Temperature */
-        {
-            TimeData xValues = new TimeData();
-            Data yValues = new Data();
+        switch (type) {
+            case 1:/* Temperature */
+            {
+                TimeData xValues = new TimeData();
+                Data yValues = new Data();
 
-            List<FluxRecord> results = Influx.getTemps();
+                List<FluxRecord> results = Influx.getTemps();
 
-            LineChart lineData = sampleData(xValues, yValues, results);
-            lineData.setName("Temperature");
+                LineChart lineData = sampleData(xValues, yValues, results);
+                lineData.setName("Temperature");
 
-            lineData.plotOn(rc);
-            soChart.add(lineData);
-        }
-        /* Altitude */
-        {
-            TimeData xValues = new TimeData();
-            Data yValues = new Data();
+                lineData.plotOn(rc);
+                soChart.add(lineData);
+                break;
+            }
+            case 2:/* Altitude */
+            {
+                TimeData xValues = new TimeData();
+                Data yValues = new Data();
 
-            List<FluxRecord> results = Influx.getAltitude();
-            LineChart lineData = sampleData(xValues, yValues, results);
-            lineData.setName("Altitude");
+                List<FluxRecord> results = Influx.getAltitude();
+                LineChart lineData = sampleData(xValues, yValues, results);
+                lineData.setName("Altitude");
 
-            lineData.plotOn(rc);
-            soChart.add(lineData);
-        }
-        /* Pressure */
-        {
-            TimeData xValues = new TimeData();
-            Data yValues = new Data();
+                lineData.plotOn(rc);
+                soChart.add(lineData);
+                break;
+            }
+            case 3:/* Pressure */
+            {
+                TimeData xValues = new TimeData();
+                Data yValues = new Data();
 
-            List<FluxRecord> results = Influx.getPressure();
-            LineChart lineData = sampleData(xValues, yValues, results);
-            lineData.setName("Pressure");
+                List<FluxRecord> results = Influx.getPressure();
+                LineChart lineData = sampleData(xValues, yValues, results);
+                lineData.setName("Pressure");
 
-            lineData.plotOn(rc);
-            soChart.add(lineData);
-        }
-        /* Moisture */
-        {
-            TimeData xValues = new TimeData();
-            Data yValues = new Data();
+                lineData.plotOn(rc);
+                soChart.add(lineData);
+                break;
+            }
+            case 4:/* Moisture */
+            {
+                TimeData xValues = new TimeData();
+                Data yValues = new Data();
 
-            List<FluxRecord> results = Influx.getMoisture();
-            LineChart lineData = sampleData(xValues, yValues, results);
-            lineData.setName("Moisture");
+                List<FluxRecord> results = Influx.getMoisture();
+                LineChart lineData = sampleData(xValues, yValues, results);
+                lineData.setName("Moisture");
 
-            lineData.plotOn(rc);
-            soChart.add(lineData);
-
+                lineData.plotOn(rc);
+                soChart.add(lineData);
+                break;
+            }
         }
 
         return soChart;
