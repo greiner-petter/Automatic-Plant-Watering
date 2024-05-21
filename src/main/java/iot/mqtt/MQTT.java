@@ -1,5 +1,6 @@
 package iot.mqtt;
 
+import iot.views.StrategyView;
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MemoryPersistence;
 
@@ -25,6 +26,12 @@ public class MQTT {
                 @Override
                 public void messageArrived(String topic, MqttMessage mqttMessage) throws Exception {
                     System.out.println(mqttMessage.toString());
+                    if (topic.equals("event/strategy/duration")) {
+                        StrategyView.globalDuration = Double.valueOf(mqttMessage.toString());
+                    }
+                    if (topic.equals("event/strategy/threshold")) {
+                        StrategyView.globalThreshold = Double.valueOf(mqttMessage.toString());
+                    }
                 }
             });
             System.out.println("Subscribed");
