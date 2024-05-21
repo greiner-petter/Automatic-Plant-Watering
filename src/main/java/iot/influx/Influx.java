@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Influx {
 
@@ -26,6 +28,9 @@ public class Influx {
         System.out.println("Influx Connection: " + influxDBClient.ping());
     }
 
+    public static List<FluxRecord> getPumpHistory(int maxCount) {
+        return Objects.requireNonNull(queryTopic("devices/project/pumpForDuration")).stream().limit(maxCount).collect(Collectors.toList());
+    }
     public static List<FluxRecord> getTemps() {
         return queryTopic("devices/project/temp");
     }
