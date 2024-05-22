@@ -40,7 +40,7 @@ public class DashboardView extends VerticalLayout {
 
     public SOChart createChart(int type) {
         SOChart soChart = new SOChart();
-        soChart.setSize("100%", "550px");
+        soChart.setSize("100%", "375px");
 
         XAxis xAxis = new XAxis(DataType.DATE);
         xAxis.setDivisions(4);
@@ -61,6 +61,7 @@ public class DashboardView extends VerticalLayout {
 
                 LineChart lineData = sampleData(xValues, yValues, results);
                 lineData.setName("Temperature");
+                lineData.getItemStyle(true).setColor(new Color(255, 0, 0));
 
                 lineData.plotOn(rc);
                 soChart.add(lineData);
@@ -74,6 +75,7 @@ public class DashboardView extends VerticalLayout {
                 List<FluxRecord> results = Influx.getAltitude();
                 LineChart lineData = sampleData(xValues, yValues, results);
                 lineData.setName("Altitude");
+                lineData.getItemStyle(true).setColor(new Color(0, 255, 0));
 
                 lineData.plotOn(rc);
                 soChart.add(lineData);
@@ -87,6 +89,7 @@ public class DashboardView extends VerticalLayout {
                 List<FluxRecord> results = Influx.getPressure();
                 LineChart lineData = sampleData(xValues, yValues, results);
                 lineData.setName("Pressure");
+                lineData.getItemStyle(true).setColor(new Color(0, 0, 255));
 
                 lineData.plotOn(rc);
                 soChart.add(lineData);
@@ -100,6 +103,7 @@ public class DashboardView extends VerticalLayout {
                 List<FluxRecord> results = Influx.getMoisture();
                 LineChart lineData = sampleData(xValues, yValues, results);
                 lineData.setName("Moisture");
+                lineData.getItemStyle(true).setColor(new Color(255, 0, 255));
 
                 lineData.plotOn(rc);
                 soChart.add(lineData);
