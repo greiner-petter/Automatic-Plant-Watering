@@ -79,7 +79,7 @@ sudo docker compose up -d
 - Deploy Dashboard:
 ```
 mvn clean package -Pproduction
-java -jar target/iot-dashboard-1.0-SNAPSHOT.jar
+nohup java -jar target/iot-dashboard-1.0-SNAPSHOT.jar &
 ```
 
 ## SSH Tunnel
