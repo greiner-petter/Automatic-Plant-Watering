@@ -12,13 +12,6 @@
 ### Diagrams
 ![diagrams.png](docs/diagrams.png)
 
-## SSH Tunnel
-```
-ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
-```
-
-Now access InfluxDB @ http://localhost:8086
-
 ## Prerequisites on Ubuntu
 ```
 sudo apt install openjdk-17-jdk
@@ -47,7 +40,7 @@ ready to be deployed. The file can be found in the `target` folder after the bui
 Once the JAR file is built, you can run it using
 `java -jar target/iot-dashboard-1.0-SNAPSHOT.jar`
 
-## Project structure
+## Vaadin Project structure
 
 - `MainLayout.java` in `src/main/java` contains the navigation setup (i.e., the
   side/top bar and the main menu). This setup uses
@@ -88,3 +81,10 @@ sudo docker compose up -d
 mvn clean package -Pproduction
 java -jar target/iot-dashboard-1.0-SNAPSHOT.jar
 ```
+
+## SSH Tunnel
+```
+ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
+```
+
+Now access InfluxDB @ http://localhost:8086
