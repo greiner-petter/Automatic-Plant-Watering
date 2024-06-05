@@ -1,5 +1,17 @@
 # IoT Dashboard
 
+![project.png](docs/project.png)
+
+## About
+
+### Solution and Strategy
+- The Device supports a simple threshold-based strategy to supply the plant with water
+- The threshold can be changed from the dashboard
+- Optionally, the pump can be activated manually
+
+### Diagrams
+![diagrams.png](docs/diagrams.png)
+
 ## SSH Tunnel
 ```
 ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
