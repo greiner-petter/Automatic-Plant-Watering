@@ -4,6 +4,7 @@ import com.influxdb.query.FluxRecord;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.NumberField;
@@ -12,6 +13,8 @@ import com.vaadin.flow.router.Route;
 import iot.influx.Influx;
 import iot.mqtt.MQTT;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
 import java.time.chrono.Chronology;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -58,6 +61,13 @@ public class PumpView extends VerticalLayout {
         List<PumpRecord> pumpRecords = Influx.getPumpHistory(10).stream().map(record -> new PumpRecord(record.getTime(), (Number)record.getValueByKey("_value"))).collect(Collectors.toList());
         grid.setItems(pumpRecords);
         add(grid);
+
+        if (pumpRecords != null && !pumpRecords.isEmpty()) {
+            if (Duration.between(pumpRecords.getLast().getKey(), LocalDateTime.now()).toDays() > 3) {
+                add(new Span("Letzte Pump-Aktion ist mehr als 3 Tage her!"));
+            }
+        }
+
     }
 
 }
