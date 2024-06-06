@@ -38,7 +38,7 @@ public class StrategyView extends VerticalLayout {
 
         thresholdNumberField = new NumberField("Moisture Threshold");
         thresholdNumberField.setValue(globalThreshold);
-        thresholdNumberField.setMin(2500.0);
+        thresholdNumberField.setMin(2000.0);
         thresholdNumberField.setMax(3500.0);
         Button thresholdLow = new Button("Low");
         thresholdLow.addClickListener(event -> thresholdNumberField.setValue(2800.0));
