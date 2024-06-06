@@ -55,7 +55,7 @@ public class PumpView extends VerticalLayout {
         // History Log
         DateTimeFormatter formatter = DateTimeFormatter.ofLocalizedDateTime(FormatStyle.SHORT).withLocale(Locale.GERMAN).withChronology(Chronology.ofLocale(Locale.GERMAN));
         Grid<PumpRecord> grid = new Grid<>(PumpRecord.class, false);
-        grid.addColumn(pumpRecord -> formatter.format(pumpRecord.getKey())).setHeader("Time");
+        grid.addColumn(pumpRecord -> formatter.format(pumpRecord.getKey())).setHeader("Time").setSortable(true);
         grid.addColumn(PumpRecord::getValue).setHeader("Duration");
 
         List<PumpRecord> pumpRecords = Influx.getPumpHistory(10).stream().map(record -> new PumpRecord(record.getTime(), (Number)record.getValueByKey("_value"))).collect(Collectors.toList());

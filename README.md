@@ -1,11 +1,16 @@
 # IoT Dashboard
 
-## SSH Tunnel
-```
-ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
-```
+![project.png](docs/project.png)
 
-Now access InfluxDB @ http://localhost:8086
+## About
+
+### Solution and Strategy
+- The Device supports a simple threshold-based strategy to supply the plant with water
+- The threshold can be changed from the dashboard
+- Optionally, the pump can be activated manually
+
+### Diagrams
+![diagrams.png](docs/diagrams.png)
 
 ## Prerequisites on Ubuntu
 ```
@@ -35,7 +40,7 @@ ready to be deployed. The file can be found in the `target` folder after the bui
 Once the JAR file is built, you can run it using
 `java -jar target/iot-dashboard-1.0-SNAPSHOT.jar`
 
-## Project structure
+## Vaadin Project structure
 
 - `MainLayout.java` in `src/main/java` contains the navigation setup (i.e., the
   side/top bar and the main menu). This setup uses
@@ -74,5 +79,12 @@ sudo docker compose up -d
 - Deploy Dashboard:
 ```
 mvn clean package -Pproduction
-java -jar target/iot-dashboard-1.0-SNAPSHOT.jar
+nohup java -jar target/iot-dashboard-1.0-SNAPSHOT.jar &
 ```
+
+## SSH Tunnel
+```
+ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
+```
+
+Now access InfluxDB @ http://localhost:8086
