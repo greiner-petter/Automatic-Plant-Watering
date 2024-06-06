@@ -63,7 +63,7 @@ public class PumpView extends VerticalLayout {
         add(grid);
 
         if (pumpRecords != null && !pumpRecords.isEmpty()) {
-            if (Duration.between(pumpRecords.getLast().getKey(), LocalDateTime.now()).toDays() > 3) {
+            if (Duration.between(pumpRecords.get(pumpRecords.size() - 1).getKey(), LocalDateTime.now()).toDays() > 3) {
                 add(new Span("Letzte Pump-Aktion ist mehr als 3 Tage her!"));
             }
         }
