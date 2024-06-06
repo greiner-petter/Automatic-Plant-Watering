@@ -1,8 +1,13 @@
-# IoT Dashboard
+# Automatic Plant Watering Webserver
 
 ![project.png](docs/project.png)
 
 ## About
+
+### Part of a university project
+
+This repository is part of a larger university project. <br>
+This is the webserver and the repository for the ESP32 Device can be found [here](https://github.com/greiner-petter/Automatic-Plant-Watering-Device)
 
 ### Solution and Strategy
 - The Device supports a simple threshold-based strategy to supply the plant with water
@@ -62,7 +67,7 @@ Once the JAR file is built, you can run it using
 - Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
 - Report issues, create pull requests in [GitHub](https://github.com/vaadin).
 
-## Deploying on Proxmox
+## Deploying on a Server
 - Purge old docker images
 ```
 sudo docker stop $(sudo docker ps -aq) && sudo docker rm $(sudo docker ps -aq) && sudo docker rmi $(sudo docker images -q)
@@ -81,10 +86,3 @@ sudo docker compose up -d
 mvn clean package -Pproduction
 nohup java -jar target/iot-dashboard-1.0-SNAPSHOT.jar &
 ```
-
-## SSH Tunnel
-```
-ssh -L 8086:localhost:8086 iot-projekt@141.41.35.170
-```
-
-Now access InfluxDB @ http://localhost:8086
