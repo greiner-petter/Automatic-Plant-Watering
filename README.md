@@ -1,13 +1,8 @@
-# Automatic Plant Watering Webserver
+# Automatic Plant Watering
 
 ![project.png](docs/project.png)
 
 ## About
-
-### Part of a university project
-
-This repository is part of a larger university project. <br>
-This is the webserver and the repository for the ESP32 Device can be found [here](https://github.com/greiner-petter/Automatic-Plant-Watering-Device)
 
 ### Solution and Strategy
 - The Device supports a simple threshold-based strategy to supply the plant with water
@@ -16,6 +11,9 @@ This is the webserver and the repository for the ESP32 Device can be found [here
 
 ### Diagrams
 ![diagrams.png](docs/diagrams.png)
+
+## Deployment on Device
+The Device code can be found in ```Device/``` and can be opened and deployed using PlatformIO. The code was written for an ESP32.
 
 ## Prerequisites on Ubuntu
 ```
