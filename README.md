@@ -1,5 +1,10 @@
 # Automatic Plant Watering
 
+IoT device that measures and reports water levels to automatically water a plant. The data is also visualized in a custom dashboard which additionally allows for device settings adjustments.
+
+
+This is a group project for my Internet of Things University Course (This project recieved a grade of 100%)
+
 ![project.png](docs/project.png)
 
 ## About
